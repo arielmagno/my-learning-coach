@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "my-learning-coach",
+    "slug": "my-learning-coach",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "mylearningcoach",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "OPENAI_API_KEY": "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"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
