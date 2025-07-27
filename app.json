@@ -23,9 +23,7 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "extra": {
-      "OPENAI_API_KEY": "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"
-    },
+    "extra": {},
     "plugins": [
       "expo-router",
       [
