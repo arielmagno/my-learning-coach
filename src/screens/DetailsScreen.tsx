@@ -1,3 +1,7 @@
+import * as Speech from 'expo-speech';
+  const handleSpeak = () => {
+    Speech.speak(explanation);
+  };
 
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -29,7 +33,8 @@ const DetailsScreen = () => {
         <Text style={{ color: 'red', marginBottom: 12 }}>{error}</Text>
       ) : null}
       <Text style={styles.explanation}>{explanation}</Text>
-      <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
+  <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
+  <Button title="Read Explanation" onPress={handleSpeak} />
       <Text style={styles.title}>Flashcards:</Text>
       <FlashcardList flashcards={flashcards} />
       <Button title="Quiz Mode" onPress={() => navigation.navigate('Quiz')} />
