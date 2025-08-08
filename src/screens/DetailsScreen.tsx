@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import FlashcardList from '../components/FlashcardList';
 import { useResearchStore } from '../store/useResearchStore';
 import { saveFlashcards, saveExplanation } from '../services/storageService';
 
@@ -22,17 +23,8 @@ const DetailsScreen = () => {
       <Text style={styles.title}>Explanation:</Text>
       <Text style={styles.explanation}>{explanation}</Text>
       <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
-      <Text style={styles.title}>Flashcards:</Text>
-      <FlatList
-        data={flashcards}
-        keyExtractor={(_, idx) => idx.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.question}>Q: {item.question}</Text>
-            <Text style={styles.answer}>A: {item.answer}</Text>
-          </View>
-        )}
-      />
+  <Text style={styles.title}>Flashcards:</Text>
+  <FlashcardList flashcards={flashcards} />
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import PaperCard from '../components/PaperCard';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useResearchStore } from '../store/useResearchStore';
@@ -26,12 +27,7 @@ const ResultsScreen = () => {
         data={papers}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.paperTitle}>{item.title}</Text>
-            <Text>Authors: {item.authors.join(', ')}</Text>
-            <Text numberOfLines={2}>Abstract: {item.abstract}</Text>
-            <Button title="Explain" onPress={() => handleExplain(item.id)} />
-          </View>
+          <PaperCard paper={item} onExplain={() => handleExplain(item.id)} />
         )}
       />
     </View>
