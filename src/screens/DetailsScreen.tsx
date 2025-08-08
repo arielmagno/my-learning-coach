@@ -1,15 +1,27 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+
+import React, { useState } from 'react';
+import { View, Text, FlatList, StyleSheet, Button, Alert } from 'react-native';
 import { useResearchStore } from '../store/useResearchStore';
+import { saveFlashcards, saveExplanation } from '../services/storageService';
 
 const DetailsScreen = () => {
   const explanation = useResearchStore((s) => s.explanation);
   const flashcards = useResearchStore((s) => s.flashcards);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    await saveExplanation(explanation);
+    await saveFlashcards(flashcards);
+    setSaving(false);
+    Alert.alert('Saved', 'Explanation and flashcards have been saved.');
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Explanation:</Text>
       <Text style={styles.explanation}>{explanation}</Text>
+      <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
       <Text style={styles.title}>Flashcards:</Text>
       <FlatList
         data={flashcards}
