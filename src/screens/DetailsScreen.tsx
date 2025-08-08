@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import FlashcardList from '../components/FlashcardList';
 import { useResearchStore } from '../store/useResearchStore';
@@ -10,6 +12,7 @@ const DetailsScreen = () => {
   const flashcards = useResearchStore((s) => s.flashcards);
   const error = useResearchStore((s) => s.error);
   const [saving, setSaving] = useState(false);
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const handleSave = async () => {
     setSaving(true);
@@ -27,8 +30,9 @@ const DetailsScreen = () => {
       ) : null}
       <Text style={styles.explanation}>{explanation}</Text>
       <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
-  <Text style={styles.title}>Flashcards:</Text>
-  <FlashcardList flashcards={flashcards} />
+      <Text style={styles.title}>Flashcards:</Text>
+      <FlashcardList flashcards={flashcards} />
+      <Button title="Quiz Mode" onPress={() => navigation.navigate('Quiz')} />
     </View>
   );
 };
