@@ -7,6 +7,7 @@ import { useResearchStore } from '../store/useResearchStore';
 
 const ResultsScreen = () => {
   const papers = useResearchStore((s) => s.papers);
+  const error = useResearchStore((s) => s.error);
   const setExplanation = useResearchStore((s) => s.setExplanation);
   const setFlashcards = useResearchStore((s) => s.setFlashcards);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -23,6 +24,9 @@ const ResultsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Results:</Text>
+      {error ? (
+        <Text style={{ color: 'red', marginBottom: 12 }}>{error}</Text>
+      ) : null}
       <FlatList
         data={papers}
         keyExtractor={(item) => item.id}

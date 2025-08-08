@@ -13,15 +13,18 @@ export interface Flashcard {
   answer: string;
 }
 
+
 interface ResearchState {
   topic: string;
   papers: Paper[];
   explanation: string;
   flashcards: Flashcard[];
+  error: string;
   setTopic: (topic: string) => void;
   setPapers: (papers: Paper[]) => void;
   setExplanation: (text: string) => void;
   setFlashcards: (cards: Flashcard[]) => void;
+  setError: (error: string) => void;
 }
 
 export const useResearchStore = create<ResearchState>((set) => ({
@@ -29,8 +32,10 @@ export const useResearchStore = create<ResearchState>((set) => ({
   papers: [],
   explanation: '',
   flashcards: [],
-  setTopic: (topic) => set({ topic }),
-  setPapers: (papers) => set({ papers }),
-  setExplanation: (explanation) => set({ explanation }),
-  setFlashcards: (flashcards) => set({ flashcards }),
+  error: '',
+  setTopic: (topic: string) => set({ topic }),
+  setPapers: (papers: Paper[]) => set({ papers }),
+  setExplanation: (explanation: string) => set({ explanation }),
+  setFlashcards: (flashcards: Flashcard[]) => set({ flashcards }),
+  setError: (error: string) => set({ error }),
 }));

@@ -8,6 +8,7 @@ import { saveFlashcards, saveExplanation } from '../services/storageService';
 const DetailsScreen = () => {
   const explanation = useResearchStore((s) => s.explanation);
   const flashcards = useResearchStore((s) => s.flashcards);
+  const error = useResearchStore((s) => s.error);
   const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {
@@ -21,6 +22,9 @@ const DetailsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Explanation:</Text>
+      {error ? (
+        <Text style={{ color: 'red', marginBottom: 12 }}>{error}</Text>
+      ) : null}
       <Text style={styles.explanation}>{explanation}</Text>
       <Button title={saving ? 'Saving...' : 'Save'} onPress={handleSave} disabled={saving} />
   <Text style={styles.title}>Flashcards:</Text>
